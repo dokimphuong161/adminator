@@ -5,6 +5,7 @@ import { useStateContext } from '~/contexts/ContextProvider';
 
 const AppThemeProvider = (props) => {
     const { currentMode, curentColor } = useStateContext();
+    console.log(curentColor);
     const theme = createTheme({
         typography: {
             allVariants: {

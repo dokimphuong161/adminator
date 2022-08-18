@@ -6,10 +6,10 @@ const StateContext = createContext();
 
 export const ContextProvider = ({ children }) => {
     // Dark/Light mode state
-    const [currentMode, setCurrentMode] = useState(localStorage.getItem('themeMode'));
+    const [currentMode, setCurrentMode] = useState('light');
 
     // Color mode state
-    const [curentColor, setColor] = useState(localStorage.getItem('themeColor'));
+    const [curentColor, setColor] = useState('#1A97F5');
 
     const setMode = useMemo(
         () => ({
@@ -27,16 +27,6 @@ export const ContextProvider = ({ children }) => {
         setColor(newCurrentColor);
         localStorage.setItem('themeColor', newCurrentColor);
     };
-    // const setColorMode = useMemo(
-    //     () => ({
-    //         toggleColorMode: (color) => {
-
-    //         },
-    //     }),
-    //     [curentColor],
-    // );
-
-    // Value of StateContext.Provider
     const value = { currentMode, curentColor, setMode, setColorMode };
 
     return <StateContext.Provider value={value}>{children}</StateContext.Provider>;
