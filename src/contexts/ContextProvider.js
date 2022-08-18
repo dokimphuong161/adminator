@@ -6,10 +6,10 @@ const StateContext = createContext();
 
 export const ContextProvider = ({ children }) => {
     // Dark/Light mode state
-    const [currentMode, setCurrentMode] = useState('light');
+    const [currentMode, setCurrentMode] = useState(localStorage.getItem('themeMode') ?? 'light');
 
     // Color mode state
-    const [curentColor, setColor] = useState('#1A97F5');
+    const [curentColor, setColor] = useState(localStorage.getItem('themeColor') ?? '#1A97F5');
 
     const setMode = useMemo(
         () => ({
