@@ -1,28 +1,34 @@
-import { Button, Paper, Typography } from '@mui/material';
+import { Fragment } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import DefaultLayout from './layout/DefaultLayout';
 
-import { useStateContext } from './contexts/ContextProvider';
-import { themeColors } from './data/dummyData';
-
+// router configs
+import { publicRoutes } from './routerConfig/routerConfig';
 function App() {
-    const { setMode, setColorMode } = useStateContext();
-
     return (
         <div className="App">
-            <Paper>
-                <Button onClick={setMode.toggleSetMode} variant="contained" color="primary">
-                    Alo Alo
-                </Button>
-
-                <Typography variant="h1">Alo bạn ơi</Typography>
-            </Paper>
-
-            {themeColors.map((item, index) => (
-                <Button
-                    onClick={() => setColorMode(item.color)}
-                    key={index}
-                    sx={{ backgroundColor: item.color, width: 30, height: 30, marginTop: 4 }}
-                ></Button>
-            ))}
+            <Routes>
+                {publicRoutes.map((route, index) => {
+                    const Page = route.component;
+                    let Layout = DefaultLayout;
+                    if (route.layout) {
+                        Layout = route.layout;
+                    } else if (route.layout === null) {
+                        Layout = Fragment;
+                    }
+                    return (
+                        <Route
+                            key={index}
+                            path={route.path}
+                            element={
+                                <Layout>
+                                    <Page />
+                                </Layout>
+                            }
+                        />
+                    );
+                })}
+            </Routes>
         </div>
     );
 }

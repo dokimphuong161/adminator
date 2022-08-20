@@ -5,12 +5,12 @@ const StateContext = createContext();
 // const initialState = {};
 
 export const ContextProvider = ({ children }) => {
-    // Dark/Light mode state
+    // States
     const [currentMode, setCurrentMode] = useState(localStorage.getItem('themeMode') ?? 'light');
+    const [currentColor, setColor] = useState(localStorage.getItem('themeColor') ?? '#1A97F5');
+    const [isOpenSidebar, setOpenSidebar] = useState(false);
 
-    // Color mode state
-    const [curentColor, setColor] = useState(localStorage.getItem('themeColor') ?? '#1A97F5');
-
+    // Handles
     const setMode = useMemo(
         () => ({
             toggleSetMode: () => {
@@ -27,7 +27,12 @@ export const ContextProvider = ({ children }) => {
         setColor(newCurrentColor);
         localStorage.setItem('themeColor', newCurrentColor);
     };
-    const value = { currentMode, curentColor, setMode, setColorMode };
+
+    const handleToggleSidebar = () => {
+        setOpenSidebar(!isOpenSidebar);
+    };
+
+    const value = { currentMode, currentColor, setMode, setColorMode, isOpenSidebar, handleToggleSidebar };
 
     return <StateContext.Provider value={value}>{children}</StateContext.Provider>;
 };

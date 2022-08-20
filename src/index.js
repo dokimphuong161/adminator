@@ -4,12 +4,15 @@ import App from '~/App';
 import AppThemeProvider from './themes/AppThemeProvider';
 import './index.css';
 import { ContextProvider } from './contexts/ContextProvider';
+import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <ContextProvider>
         <AppThemeProvider>
-            <App />
+            <BrowserRouter>
+                <App />
+            </BrowserRouter>
         </AppThemeProvider>
     </ContextProvider>,
 );

@@ -1,24 +1,23 @@
-import { blue, pink, purple } from '@mui/material/colors';
+import { pink } from '@mui/material/colors';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import { useStateContext } from '~/contexts/ContextProvider';
 
 const AppThemeProvider = (props) => {
-    const { currentMode, curentColor } = useStateContext();
-    console.log(curentColor);
+    const { currentMode, currentColor } = useStateContext();
+    console.log(currentMode);
     const theme = createTheme({
         typography: {
             allVariants: {
                 fontFamily: 'Raleway',
                 textTransform: 'none',
-                fontSize: 16,
                 fontWeight: 400,
             },
         },
         palette: {
             mode: currentMode,
             primary: {
-                main: curentColor,
+                main: currentColor,
             },
             secondary: {
                 main: pink[400],
@@ -30,8 +29,6 @@ const AppThemeProvider = (props) => {
                     sx: {
                         px: 1,
                     },
-                    variant: 'subtitle2',
-                    textTransform: 'capitalize',
                 },
             },
             MuiStack: {
@@ -61,7 +58,7 @@ const AppThemeProvider = (props) => {
                     p: 0,
                     disableRipple: true,
                 },
-                variant: 'text',
+                variant: 'contained',
             },
             MuiTab: {
                 defaultProps: {
