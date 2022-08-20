@@ -22,8 +22,8 @@ const Header = () => {
                     </IconButton>
                 </Toolbar>
             </Paper>
-            {/* <Button onClick={setMode.toggleSetMode}>Dark mode</Button> */}
-            {/* <ThemeSetting /> */}
+            <Button onClick={setMode.toggleSetMode}>Dark mode</Button>
+            <ThemeSetting />
         </MyAppBar>
     );
 };
