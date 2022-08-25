@@ -1,11 +1,14 @@
+// redux
+import { useSelector } from 'react-redux';
+import { alpha } from '@mui/material/styles';
+
+// mui
 import { pink } from '@mui/material/colors';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-import { useStateContext } from '~/contexts/ContextProvider';
-
 const AppThemeProvider = (props) => {
-    const { currentMode, currentColor } = useStateContext();
-    console.log(currentMode);
+    const currentMode = useSelector((state) => state.customization.currentMode);
+    const currentColor = useSelector((state) => state.customization.currentColor);
     const theme = createTheme({
         typography: {
             allVariants: {
@@ -18,10 +21,16 @@ const AppThemeProvider = (props) => {
             mode: currentMode,
             primary: {
                 main: currentColor,
+                light: '#ffebee',
             },
             secondary: {
                 main: pink[400],
             },
+        },
+        customShadowns: {
+            button: `0 2px #0000000b`,
+            text: `0 -1px 0 rgb(0 0 0 / 12%)`,
+            z1: `0px 2px 8px ${alpha('#212121', 0.15)}`,
         },
         components: {
             MuiTypography: {

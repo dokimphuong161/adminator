@@ -2,25 +2,11 @@ import React, { createContext, useContext, useMemo, useState } from 'react';
 
 const StateContext = createContext();
 
-// const initialState = {};
-
 export const ContextProvider = ({ children }) => {
     // States
-    const [currentMode, setCurrentMode] = useState(localStorage.getItem('themeMode') ?? 'light');
     const [currentColor, setColor] = useState(localStorage.getItem('themeColor') ?? '#1A97F5');
-    const [isOpenSidebar, setOpenSidebar] = useState(false);
-
-    // Handles
-    const setMode = useMemo(
-        () => ({
-            toggleSetMode: () => {
-                const newCurrentMode = currentMode === 'dark' ? 'light' : 'dark';
-                setCurrentMode(newCurrentMode);
-                localStorage.setItem('themeMode', newCurrentMode);
-            },
-        }),
-        [currentMode],
-    );
+    const [openMenu, setOpenMenu] = useState('');
+    const [anchorEl, setAnchorEl] = useState(null);
 
     const setColorMode = (color) => {
         const newCurrentColor = color;
@@ -28,11 +14,25 @@ export const ContextProvider = ({ children }) => {
         localStorage.setItem('themeColor', newCurrentColor);
     };
 
-    const handleToggleSidebar = () => {
-        setOpenSidebar(!isOpenSidebar);
+    const handleSetAnchorEl = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+    const handleOpenMenu = (id) => {
+        setOpenMenu(id);
     };
 
-    const value = { currentMode, currentColor, setMode, setColorMode, isOpenSidebar, handleToggleSidebar };
+    const value = {
+        currentColor,
+        setColorMode,
+        anchorEl,
+        handleSetAnchorEl,
+        handleClose,
+        openMenu,
+        handleOpenMenu,
+    };
 
     return <StateContext.Provider value={value}>{children}</StateContext.Provider>;
 };

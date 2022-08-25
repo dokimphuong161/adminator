@@ -1,4 +1,5 @@
-import MuiDrawer from '@mui/material/Drawer';
+// mui
+import { Drawer } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 const drawerWidth = 240;
@@ -22,19 +23,10 @@ const closedMixin = (theme) => ({
     '&::-webkit-scrollbar': { display: 'none' },
 });
 
-const DrawerHeader = styled('div')(({ theme }) => ({
-    display: 'flex',
-    alignItems: 'center',
-    ...theme.mixins.toolbar,
-}));
-
-const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(({ theme, isOpenSidebar }) => ({
+const SidebarDesktop = styled(Drawer, { shouldForwardProp: (prop) => prop !== 'open' })(({ theme, isOpenSidebar }) => ({
     width: drawerWidth,
     flexShrink: 0,
     whiteSpace: 'nowrap',
-    [theme.breakpoints.down('sm')]: {
-        display: 'none',
-    },
 
     ...(isOpenSidebar && {
         ...openedMixin(theme),
@@ -49,4 +41,4 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     }),
 }));
 
-export { Drawer, DrawerHeader };
+export default SidebarDesktop;
