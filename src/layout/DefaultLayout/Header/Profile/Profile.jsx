@@ -74,10 +74,10 @@ const Profile = () => {
 
     return (
         <Box>
-            <ButtonBase ref={anchorRef} onClick={handleTogglePopper}>
+            <ButtonBase ref={anchorRef} onClick={handleTogglePopper} sx={{ ml: '8px', borderRadius: '10px' }}>
                 <Stack alignItems="center">
                     <Avatar sx={{ width: '30px', height: '30px' }} src={images.AVT_IMG} alt="Do Kim Phuong" />
-                    <Typography variant="subtitle2" sx={{ px: 0, fontWeight: 600 }}>
+                    <Typography variant="subtitle2" sx={{ px: 0, fontWeight: 600, marginLeft: '4px' }}>
                         Phuong
                     </Typography>
                 </Stack>

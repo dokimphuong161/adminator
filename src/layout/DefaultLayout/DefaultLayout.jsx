@@ -8,7 +8,7 @@ import { Box, CssBaseline } from '@mui/material';
 import { styled, useTheme, alpha } from '@mui/material/styles';
 
 // components
-import Footer from '../../components/Footer';
+import Footer from './Footer';
 import Header from './Header';
 import Sidebar from './Sidebar';
 import ThemeSetting from './ThemeSetting';
